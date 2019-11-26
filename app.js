@@ -4,13 +4,9 @@ const axios = require('axios');
 var News = require('./News').newsCollection;
 const apiKey = `fbe98ca17e3e4caebd82477e9fc43f87`;
 const path = require('path')
-if(process.env.NODE_ENV ==='production'){
-  app.use(express.static('client/build'));
-}
 
-  app.get('/*',(req,res)=>{
-    res.sendFile(path.join(__dirname,'client/build','index.html'));
-  });
+
+ 
 
 app.get('http://localhost:5000/getmovie', (req, res) => {
   const title = req.query.title;
@@ -111,7 +107,13 @@ app.delete('/deleteNews', async (req,res) =>{
     res.json(remove);
 }) 
 
+if(process.env.NODE_ENV ==='production'){
+  app.use(express.static('client/build'));
 
+  app.get('/*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'client/build','index.html'));
+  });
+}
 
 
 const PORT = process.env.PORT || 5000;
