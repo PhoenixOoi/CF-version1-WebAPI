@@ -6,7 +6,57 @@ const apiKey = `fbe98ca17e3e4caebd82477e9fc43f87`;
 const path = require('path')
 
 
+ 
 
+// app.get('http://localhost:5000/getmovie', (req, res) => {
+//   const title = req.query.title;
+//   const querystr = `http://www.omdbapi.com/?t=${title}&apikey=${apikey}`;
+
+//   axios
+//     .get(querystr)
+//     .then(response => {
+//       const movie = new Movie({
+//         title: response.data.Title,
+//         year: response.data.Year,
+//         genre: response.data.Genre,
+//         actors: response.data.Actors,
+//         plot: response.data.Plot,
+//         poster: response.data.Poster
+//       });
+//       if (!movie.title) {
+//         res.status(200).json('Not found');
+//         return;
+//       }
+//       movie
+//         .save()
+//         .then(response => {
+//           res.status(200).json(response);
+//         })
+//         .catch(error => {
+//           res.status(400).json(error);
+//         });
+//     })
+//     .catch(error => {
+//       res.status(400).json(error);
+//     });
+// });
+
+//localhost:5000/getHistory - get all search history
+app.get('/getHistory', (req, res) => {
+  News.find({})  
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(error => {
+      res.status(400).json(error);
+    });
+});
+
+//localhost:5000/getHistory - get all search history
+app.get('/deleteHistory', async (req, res) => {
+  // res.send(req.query.id)
+  res.send(await News.findByIdAndDelete(req.query.id))
+});
 
 //localhost:5000/getNews with country code
 app.get('/getNews', async (req, res) => 
