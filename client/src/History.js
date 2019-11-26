@@ -36,7 +36,7 @@ class History extends Component{
         return(
             <div className="container2">
             <div className="colhistory">
-            <a href="http://localhost:3000/" class="back">Back</a>
+            <a href="https://web-api-ocf.herokuapp.com/" class="back">Back</a>
                 <h1>Search History</h1>
              <ReactTable  
               style={{ "font-size":"15px" }}
